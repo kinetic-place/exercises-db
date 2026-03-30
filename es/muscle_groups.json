@@ -1,0 +1,87 @@
+[
+  {
+    "id": "f2c2ba06-49f9-495c-89cb-5b57b4937a39",
+    "slug": "abdominals",
+    "name": "Abdominales"
+  },
+  {
+    "id": "c6cd5939-febb-42b3-bb70-e58b3023595a",
+    "slug": "abductors",
+    "name": "Abductores"
+  },
+  {
+    "id": "5b492b47-fed4-47ea-89f7-d545d8805726",
+    "slug": "adductors",
+    "name": "Aductores"
+  },
+  {
+    "id": "aef54d45-3433-420b-955e-e0d7950c06a1",
+    "slug": "biceps",
+    "name": "Bíceps"
+  },
+  {
+    "id": "6f39f0ef-96c2-4910-b5d6-dcf1b124611b",
+    "slug": "calves",
+    "name": "Pantorrillas"
+  },
+  {
+    "id": "6427e37e-b443-4577-8d16-635b7607dfeb",
+    "slug": "chest",
+    "name": "Pecho"
+  },
+  {
+    "id": "a41f573a-4b48-45d6-b73d-9365cf6b6427",
+    "slug": "forearms",
+    "name": "Antebrazos"
+  },
+  {
+    "id": "53cf7491-adbe-4bfe-8016-dc78e6ffa3cf",
+    "slug": "glutes",
+    "name": "Glúteos"
+  },
+  {
+    "id": "1c2a5282-e7dd-4bcb-9cf9-249ef441878d",
+    "slug": "hamstrings",
+    "name": "Isquiotibiales"
+  },
+  {
+    "id": "1974ac3e-bdd2-4793-9364-68aa131fafaa",
+    "slug": "lats",
+    "name": "Dorsales"
+  },
+  {
+    "id": "682f3ac0-1562-4cb4-a16a-caddc9eaadea",
+    "slug": "lower-back",
+    "name": "Espalda Baja"
+  },
+  {
+    "id": "cf81b51f-97d4-4cb2-ab3c-1d59472481ed",
+    "slug": "middle-back",
+    "name": "Espalda Media"
+  },
+  {
+    "id": "2eed00c9-b475-4f28-b1c7-4b71812f841f",
+    "slug": "neck",
+    "name": "Cuello"
+  },
+  {
+    "id": "6249700e-e450-4864-978f-af956c41370e",
+    "slug": "quadriceps",
+    "name": "Cuádriceps"
+  },
+  {
+    "id": "5181c3d4-3cfd-4e9e-9ae3-3de472e084bc",
+    "slug": "shoulders",
+    "name": "Hombros"
+  },
+  {
+    "id": "667feec5-7d7d-4068-9a33-f23602e7d6ea",
+    "slug": "traps",
+    "name": "Trapecios"
+  },
+  {
+    "id": "af879827-3278-4446-9628-64977b081a24",
+    "slug": "triceps",
+    "name": "Tríceps"
+  }
+]

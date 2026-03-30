@@ -1,0 +1,218 @@
+[
+  {
+    "id": "b84e44eb-3b18-4891-bc49-6b09cbecb87f",
+    "name": "Otro",
+    "type": "weight",
+    "usageType": "multiple"
+  },
+  {
+    "id": "d169d706-32e1-4b60-8e72-1e9adb438856",
+    "name": "Peso Corporal",
+    "type": "resistance",
+    "usageType": "single"
+  },
+  {
+    "id": "bf077d4d-aec9-4f9b-a3ed-ce145e77666f",
+    "name": "Bandas",
+    "type": "resistance",
+    "usageType": "multiple"
+  },
+  {
+    "id": "1bcadaed-bcf2-4430-ba8f-39246920686d",
+    "name": "Pelota Suiza",
+    "type": "resistance",
+    "usageType": "single"
+  },
+  {
+    "id": "a6361b94-4739-43fe-a809-9aef4e062cd9",
+    "name": "Foam Roller",
+    "type": "resistance",
+    "usageType": "single"
+  },
+  {
+    "id": "b7a854c7-5e6b-405c-8c70-a192c6767c55",
+    "name": "Barra",
+    "type": "weight",
+    "usageType": "single"
+  },
+  {
+    "id": "ccae36ce-5b58-49c3-a895-04711d5bfff6",
+    "name": "Polea",
+    "type": "weight",
+    "usageType": "single"
+  },
+  {
+    "id": "22ad09f6-c689-4096-ad05-971ca8a6f0aa",
+    "name": "Mancuerna",
+    "type": "weight",
+    "usageType": "double"
+  },
+  {
+    "id": "75567015-a3e5-48d8-ba9c-91ef8c4daf01",
+    "name": "Barra Z",
+    "type": "weight",
+    "usageType": "single"
+  },
+  {
+    "id": "855efe8d-3d21-496e-85b0-c05aaf1e71c0",
+    "name": "Pesas Rusas",
+    "type": "weight",
+    "usageType": "double"
+  },
+  {
+    "id": "97df708e-50d0-43a3-a474-9b6823f519a7",
+    "name": "Máquina",
+    "type": "weight",
+    "usageType": "single"
+  },
+  {
+    "id": "7828ecfd-be79-4ece-ab76-fa2dd132b132",
+    "name": "Balón Medicinal",
+    "type": "weight",
+    "usageType": "single"
+  },
+  {
+    "id": "04d99764-b19a-4902-b528-8090f261f4f5",
+    "name": "Rueda Abdominal",
+    "type": "resistance",
+    "usageType": "single"
+  },
+  {
+    "id": "64c1edac-2822-44f3-8b79-ccc9412d207e",
+    "name": "Cuerdas de Batalla",
+    "type": "resistance",
+    "usageType": "single"
+  },
+  {
+    "id": "9d6ab21d-d9ca-492a-a4b6-fe7c2cb08665",
+    "name": "Cuerda de Escalar",
+    "type": "resistance",
+    "usageType": "single"
+  },
+  {
+    "id": "b1ad38da-ce8a-4924-9bb4-1a08e48e078b",
+    "name": "Minibanda",
+    "type": "resistance",
+    "usageType": "single"
+  },
+  {
+    "id": "4cc8b0fb-f625-4787-9373-22c11cd0f1ce",
+    "name": "Barra de Dominadas",
+    "type": "resistance",
+    "usageType": "single"
+  },
+  {
+    "id": "99c515eb-da8a-494d-8bf6-ccd683f33d86",
+    "name": "Banda de Resistencia",
+    "type": "resistance",
+    "usageType": "single"
+  },
+  {
+    "id": "2bd115f5-924c-42d3-86f8-2cc3161c51b3",
+    "name": "Superbanda",
+    "type": "resistance",
+    "usageType": "single"
+  },
+  {
+    "id": "d2fe3713-c210-45d8-a529-bfc50647094f",
+    "name": "Entrenador de Suspensión",
+    "type": "resistance",
+    "usageType": "single"
+  },
+  {
+    "id": "4173327f-2455-4db2-a164-55b3cf89e7a0",
+    "name": "Anillas de Gimnasia",
+    "type": "resistance",
+    "usageType": "double"
+  },
+  {
+    "id": "f98b0957-57bb-4d4c-902b-8f3a43c108a0",
+    "name": "Barras Paralelas",
+    "type": "resistance",
+    "usageType": "double"
+  },
+  {
+    "id": "fdc0447b-f64b-4ed5-a1a8-c10298832569",
+    "name": "Discos Deslizantes",
+    "type": "resistance",
+    "usageType": "double"
+  },
+  {
+    "id": "c5d88afb-000b-4356-8af7-2f43a6c14f68",
+    "name": "Bolsa Búlgara",
+    "type": "weight",
+    "usageType": "single"
+  },
+  {
+    "id": "f1d98414-f706-4cb3-bb63-0b658a1f8644",
+    "name": "Saco de Arena Pesado",
+    "type": "weight",
+    "usageType": "single"
+  },
+  {
+    "id": "bd05af12-dd29-4982-98e9-7134228e17c2",
+    "name": "Landmine",
+    "type": "weight",
+    "usageType": "single"
+  },
+  {
+    "id": "1175850d-5683-4a64-b3fc-f61840a771f9",
+    "name": "Maza",
+    "type": "weight",
+    "usageType": "single"
+  },
+  {
+    "id": "03b7897d-bd9d-44ee-9d2d-81cbd5ba3f0e",
+    "name": "Saco de Arena",
+    "type": "weight",
+    "usageType": "single"
+  },
+  {
+    "id": "4d48ce61-cd11-4f72-8c1f-582dc70e67f6",
+    "name": "Balón de Impacto",
+    "type": "weight",
+    "usageType": "single"
+  },
+  {
+    "id": "c3100151-6039-48de-844f-273cb6960d6f",
+    "name": "Trineo",
+    "type": "weight",
+    "usageType": "single"
+  },
+  {
+    "id": "f95cace6-3997-4d6b-90a5-ac85bc4760ee",
+    "name": "Llanta",
+    "type": "weight",
+    "usageType": "single"
+  },
+  {
+    "id": "6e3060b2-f7bb-4a44-b386-8283479ba4d2",
+    "name": "Barra Hexagonal",
+    "type": "weight",
+    "usageType": "single"
+  },
+  {
+    "id": "1b8c4f25-78a4-414e-ab4c-89cb5c3473aa",
+    "name": "Balón Medicinal de Pared",
+    "type": "weight",
+    "usageType": "single"
+  },
+  {
+    "id": "b596d164-e645-46e6-87df-e2f6daee0c22",
+    "name": "Disco de Peso",
+    "type": "weight",
+    "usageType": "single"
+  },
+  {
+    "id": "58a015e9-1971-42a1-9198-1e1ef8f21631",
+    "name": "Clubbell",
+    "type": "weight",
+    "usageType": "double"
+  },
+  {
+    "id": "902e3cd9-f4a0-486f-92f7-782425c131b7",
+    "name": "Maza India",
+    "type": "weight",
+    "usageType": "double"
+  }
+]
