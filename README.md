@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://kinetic.place">
+    <img src="https://kinetic.place/images/kinetic-logo-animated.gif" alt="Kinetic.place" width="400" />
+  </a>
+</p>
+
 # 🗄️ Kinetic Exercises Database
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
