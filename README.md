@@ -227,6 +227,12 @@ See [`@kinetic-place/exercises-api`](https://github.com/kinetic-place/exercises-
 
 A massive thank you to [wrkout/exercises.json](https://github.com/wrkout/exercises.json) for providing the foundational list of gym exercises that kickstarted this dataset!
 
+## 🚀 Building a Fitness App?
+
+This dataset is part of [**Kinetic.place**](https://kinetic.place) — the open platform for developers and fitness creators. Whether you're building a workout tracker, a coaching app, or creating fitness content, Kinetic provides the data, APIs, and tools to ship faster.
+
+👉 **[kinetic.place](https://kinetic.place)** — Exercises, APIs, and content for fitness builders.
+
 ## License
 
 MIT © [Kinetic.place](https://kinetic.place)
