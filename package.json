@@ -1,8 +1,8 @@
 {
   "name": "@kinetic-place/exercises-db",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
-  "description": "1,500+ structured fitness exercises in a pristine JSON database format. MIT licensed.",
+  "description": "908 structured fitness exercises with step-by-step guides, as database-ready entity files in English and Spanish. MIT licensed.",
   "main": "dist/index.js",
   "keywords": [
     "exercise",

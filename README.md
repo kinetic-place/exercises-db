@@ -9,7 +9,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![NPM Version](https://img.shields.io/npm/v/@kinetic-place/exercises-db)](https://npmjs.com/package/@kinetic-place/exercises-db)
 
-An open-source, database-ready exercise dataset with **899 exercises**, **17 muscle groups**, and **36 equipment types** — structured as separate entity files ready to seed into SQL or NoSQL databases. Available in English and Spanish.
+An open-source, database-ready exercise dataset with **908 exercises**, **814 step-by-step exercise guides**, **17 muscle groups**, and **44 equipment types** — structured as separate entity files ready to seed into SQL or NoSQL databases. Available in English and Spanish.
 
 ---
 
@@ -26,13 +26,15 @@ Or download the `.json` files directly from the `en/` and `es/` folders.
 ```
 exercises-db/
 ├── en/
-│   ├── exercises.json       # 899 exercises with relations
+│   ├── exercises.json       # 908 exercises with relations
+│   ├── guides.json          # 814 exercise guides, keyed by exercise ID
 │   ├── muscle_groups.json   # 17 muscle groups
-│   └── equipment.json       # 36 equipment types
+│   └── equipment.json       # 44 equipment types
 └── es/
-    ├── exercises.json       # 899 exercises (Spanish)
+    ├── exercises.json       # 908 exercises (Spanish)
+    ├── guides.json          # 814 exercise guides (Spanish)
     ├── muscle_groups.json   # 17 muscle groups (Spanish)
-    └── equipment.json       # 36 equipment types (Spanish)
+    └── equipment.json       # 44 equipment types (Spanish)
 ```
 
 Unlike `exercises-json` (a single flat file), this package provides **separate entity files** with referential IDs — designed for direct database seeding.
@@ -53,18 +55,31 @@ CREATE TABLE equipment (
   id UUID PRIMARY KEY,
   name TEXT NOT NULL,
   type TEXT NOT NULL,               -- 'weight' | 'resistance'
-  usage_type TEXT                   -- 'single' | 'double' | 'multiple'
+  usage_type TEXT,                  -- 'single' | 'double' | 'multiple'
+  family TEXT                       -- 'barbell' | 'bench' | 'rack' | ...
 );
 
 CREATE TABLE exercises (
   id UUID PRIMARY KEY,
   name TEXT NOT NULL,
+  slug TEXT UNIQUE,
   type TEXT NOT NULL,               -- 'reps' | 'time' | 'distance'
   difficulty_level TEXT,            -- 'beginner' | 'intermediate' | 'expert'
   force_type TEXT,                  -- 'push' | 'pull' | 'static'
   mechanics TEXT,                   -- 'compound' | 'isolation'
   category TEXT,                    -- 'strength' | 'cardio' | etc.
   instructions JSONB
+);
+
+CREATE TABLE exercise_guides (
+  exercise_id UUID PRIMARY KEY REFERENCES exercises (id),
+  summary TEXT NOT NULL,
+  setup JSONB,                      -- string[]
+  execution JSONB,                  -- string[]
+  form_cues JSONB,                  -- string[]
+  common_mistakes JSONB,            -- { mistake, correction }[]
+  alternatives JSONB                -- { exerciseId, name, reason }[]
+  -- ...and the other guides.json fields you need
 );
 
 -- Seed from JSON files
@@ -77,6 +92,7 @@ CREATE TABLE exercises (
 import exercises from '@kinetic-place/exercises-db/en/exercises.json';
 import muscles from '@kinetic-place/exercises-db/en/muscle_groups.json';
 import equipment from '@kinetic-place/exercises-db/en/equipment.json';
+import guides from '@kinetic-place/exercises-db/en/guides.json';
 
 // Seed muscle groups first (referenced by exercises)
 for (const muscle of muscles) {
@@ -98,9 +114,14 @@ for (const exercise of exercises) {
     await db.insert('exercise_muscles', {
       exercise_id: data.id,
       muscle_group_id: mg.id,
-      type: mg.type  // 'primary' | 'secondary' | 'tertiary'
+      type: mg.type, // 'primary' | 'secondary' | 'tertiary'
     });
   }
+}
+
+// Last, the guides (814 of the 908 exercises have one)
+for (const { exerciseId, ...guide } of guides) {
+  await db.insert('exercise_guides', { exercise_id: exerciseId, ...guide });
 }
 ```
 
@@ -123,6 +144,7 @@ Each exercise contains the full relational data embedded:
 {
   "id": "d586b5aa-c2f4-4cb5-8038-d10b03c3b763",
   "name": "Barbell Bench Press",
+  "slug": "barbell-bench-press",
   "type": "reps",
   "difficultyLevel": "intermediate",
   "forceType": "push",
@@ -137,25 +159,33 @@ Each exercise contains the full relational data embedded:
     { "id": "...", "slug": "triceps", "name": "Triceps", "type": "primary" }
   ],
   "equipment": [
-    { "id": "...", "name": "Barbell", "type": "weight", "usageType": "single", "numItems": null }
+    {
+      "id": "...",
+      "name": "Barbell",
+      "type": "weight",
+      "usageType": "single",
+      "family": "barbell",
+      "numItems": null
+    }
   ]
 }
 ```
 
 #### Exercise Fields
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | `string` | UUID — stable across versions |
-| `name` | `string` | Exercise name (localized) |
-| `type` | `string` | Measurement type: `reps`, `time`, or `distance` |
-| `difficultyLevel` | `string \| null` | `beginner`, `intermediate`, or `expert` |
-| `forceType` | `string \| null` | Primary force: `push`, `pull`, or `static` |
-| `mechanics` | `string \| null` | Movement type: `compound` or `isolation` |
-| `category` | `string \| null` | Exercise category (see values below) |
-| `instructions` | `string[]` | Step-by-step coaching cues |
-| `muscleGroups` | `MuscleGroup[]` | Muscles targeted with role classification |
-| `equipment` | `Equipment[]` | Required equipment |
+| Field             | Type             | Description                                                                                                     |
+| ----------------- | ---------------- | --------------------------------------------------------------------------------------------------------------- |
+| `id`              | `string`         | UUID — stable across versions                                                                                   |
+| `name`            | `string`         | Exercise name (localized)                                                                                       |
+| `slug`            | `string`         | URL-safe identifier (e.g., `barbell-bench-press`), the same in every language                                   |
+| `type`            | `string`         | Measurement type: `reps`, `time`, or `distance`                                                                 |
+| `difficultyLevel` | `string \| null` | `beginner`, `intermediate`, or `expert`                                                                         |
+| `forceType`       | `string \| null` | Primary force: `push`, `pull`, or `static`                                                                      |
+| `mechanics`       | `string \| null` | Movement type: `compound` or `isolation`                                                                        |
+| `category`        | `string \| null` | Exercise category (see values below)                                                                            |
+| `instructions`    | `string[]`       | Step-by-step text from the original dataset. Kept for compatibility; prefer the guide's `setup` and `execution` |
+| `muscleGroups`    | `MuscleGroup[]`  | Muscles targeted with role classification                                                                       |
+| `equipment`       | `Equipment[]`    | Required equipment                                                                                              |
 
 **Categories:** `strength` · `stretching` · `cardio` · `plyometrics` · `powerlifting` · `olympicWeightlifting` · `strongman`
 
@@ -165,53 +195,78 @@ Each exercise contains the full relational data embedded:
 { "id": "6427e37e-...", "slug": "chest", "name": "Chest" }
 ```
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | `string` | UUID — matches IDs in `exercise.muscleGroups[].id` |
-| `slug` | `string` | URL-safe identifier (e.g., `chest`, `lower-back`) |
-| `name` | `string` | Display name |
+| Field  | Type     | Description                                        |
+| ------ | -------- | -------------------------------------------------- |
+| `id`   | `string` | UUID — matches IDs in `exercise.muscleGroups[].id` |
+| `slug` | `string` | URL-safe identifier (e.g., `chest`, `lower-back`)  |
+| `name` | `string` | Display name                                       |
 
 **17 muscle groups:** abdominals · abductors · adductors · biceps · calves · chest · forearms · glutes · hamstrings · lats · lower back · middle back · neck · quadriceps · shoulders · traps · triceps
 
 ### equipment.json
 
 ```json
-{ "id": "97df708e-...", "name": "Barbell", "type": "weight", "usageType": "single" }
+{
+  "id": "97df708e-...",
+  "name": "Barbell",
+  "type": "weight",
+  "usageType": "single",
+  "family": "barbell"
+}
 ```
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | `string` | UUID — matches IDs in `exercise.equipment[].id` |
-| `name` | `string` | Equipment name |
-| `type` | `string` | `weight` or `resistance` |
-| `usageType` | `string` | `single`, `double`, or `multiple` |
+| Field       | Type     | Description                                                                           |
+| ----------- | -------- | ------------------------------------------------------------------------------------- |
+| `id`        | `string` | UUID — matches IDs in `exercise.equipment[].id`                                       |
+| `name`      | `string` | Equipment name                                                                        |
+| `type`      | `string` | `weight` or `resistance`                                                              |
+| `usageType` | `string` | `single`, `double`, or `multiple`                                                     |
+| `family`    | `string` | Broad kind: `barbell`, `dumbbell`, `bench`, `rack`, `bands`, `balls`, `bodyweight`, … |
 
-**36 equipment types** including: Barbell · Dumbbell · Cable · Machine · Body Only · Kettlebell · Bands · Medicine Ball · Exercise Ball · and more.
+**44 equipment types** including: Barbell · Dumbbell · Cable · Machine · Body Only · Kettlebell · Bands · Bench · Squat Rack · Plyo Box · and more.
+
+### guides.json
+
+One guide per exercise, keyed by `exerciseId` (814 of the 908 have one): `summary`, `whyItWorks`, `setup`, `execution`, `formCues`, `breathing`, `commonMistakes`, `programmingNotes`, `safetyNotes`, `faq`, and three lists of links to other exercises: `alternatives`, `easierVariations`, `harderVariations`, each `{ exerciseId, name, reason }`.
+
+```json
+{
+  "exerciseId": "605ab3e8-4491-4737-aa22-f06598adadf5",
+  "summary": "...",
+  "execution": ["..."],
+  "alternatives": [
+    { "exerciseId": "486e1ee3-...", "name": "Dumbbell Squat", "reason": "..." },
+    { "exerciseId": "89d7e2eb-...", "name": "Leg Press", "reason": "..." }
+  ]
+}
+```
+
+The full field reference is in [`exercises-json`'s README](https://github.com/kinetic-place/exercises-json#-exercise-guides). Guides are general guidance, not medical advice.
 
 ### Muscle Group Targeting
 
 When exercises reference muscle groups, each includes a `type` field:
 
-| Type | Meaning |
-|------|---------|
-| `primary` | Main muscle(s) targeted |
-| `secondary` | Supporting muscles engaged |
-| `tertiary` | Stabilizers with minor activation |
+| Type        | Meaning                           |
+| ----------- | --------------------------------- |
+| `primary`   | Main muscle(s) targeted           |
+| `secondary` | Supporting muscles engaged        |
+| `tertiary`  | Stabilizers with minor activation |
 
 ## 🌐 Locales
 
-| Language | Files | Status |
-|----------|-------|--------|
-| English | `en/*.json` | ✅ Complete |
-| Spanish | `es/*.json` | ✅ Complete |
+| Language | Files       | Status      |
+| -------- | ----------- | ----------- |
+| English  | `en/*.json` | ✅ Complete |
+| Spanish  | `es/*.json` | ✅ Complete |
 
 ## 💡 When to Use This vs. Other Packages
 
-| Need | Use |
-|------|-----|
-| Single JSON file to import into your app | [`@kinetic-place/exercises-json`](https://github.com/kinetic-place/exercises-json) |
-| **Separate entity files to seed a database** | **`@kinetic-place/exercises-db`** ← you're here |
-| REST API with search and filtering | [`@kinetic-place/exercises-api`](https://github.com/kinetic-place/exercises-api) |
+| Need                                         | Use                                                                                |
+| -------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Single JSON file to import into your app     | [`@kinetic-place/exercises-json`](https://github.com/kinetic-place/exercises-json) |
+| **Separate entity files to seed a database** | **`@kinetic-place/exercises-db`** ← you're here                                    |
+| REST API with search and filtering           | [`@kinetic-place/exercises-api`](https://github.com/kinetic-place/exercises-api)   |
 
 ## 🔌 Prefer an API?
 
