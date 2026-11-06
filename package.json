@@ -19,7 +19,7 @@
   "homepage": "https://kinetic.place",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kinetic-place/exercises-db"
+    "url": "git+https://github.com/kinetic-place/exercises-db.git"
   },
   "author": "Kinetic.place",
   "license": "MIT",
