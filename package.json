@@ -1,17 +1,29 @@
 {
   "name": "@kinetic-place/exercises-db",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
-  "description": "908 structured fitness exercises with step-by-step guides, as database-ready entity files in English and Spanish. MIT licensed.",
-  "main": "dist/index.js",
+  "description": "908 structured fitness exercises with step-by-step guides and YouTube videos, as database-ready entity files in English and Spanish. MIT licensed.",
+  "main": "en/exercises.json",
+  "files": [
+    "en",
+    "es"
+  ],
   "keywords": [
     "exercise",
     "fitness",
     "workout",
     "exercise-database",
-    "postgres"
+    "postgres",
+    "youtube"
   ],
+  "homepage": "https://kinetic.place",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kinetic-place/exercises-db"
+  },
   "author": "Kinetic.place",
   "license": "MIT",
-  "dependencies": {}
+  "publishConfig": {
+    "access": "public"
+  }
 }
